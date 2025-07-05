@@ -129,6 +129,22 @@
     flex-direction: column;
     gap: 16px;
 }
+.modal_taylor_quiz_container {
+    display: none;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+iframe.taylor_game {
+    max-height: 600px;
+    height: 100%;
+}
 @media screen and (max-width:1000px) {
     .card__invitation {
         height: auto;
@@ -190,6 +206,7 @@ h2 {
                 <div class="botones_card">
                     <button id="btn_map">Ver ubicación</button>
                     <button id="btn_game">Jugar mientras espera la comida</button>
+                    <button id="btn_taylor">Reto de Taylor</button>
                 </div>
             </div>
             <div class="img_card"></div>
@@ -212,19 +229,54 @@ h2 {
     ">✖</button><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.670543742907!2d-74.06156542502094!3d4.652716195322105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a438c774555%3A0x8e2af1374e6410c1!2sDevachan%20Caf%C3%A9%20M%C3%A1gico!5e0!3m2!1ses!2sco!4v1750817216960!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
     </section>
     <div class="modal_game"></div>
+    <div class="modal_taylor_quiz_container">
+      <button id="close_taylor" style="
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 20px;
+        background: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+    ">✖</button>
+  <iframe class="taylor_game" 
+    allow="fullscreen; autoplay; allow-top-navigation-by-user-activation"
+    allowfullscreen
+    width="795" height="690"
+    frameborder="0"
+    src="https://www.educaplay.com/game/16933307-taylor_s_swift_songs_quiz.html">
+  </iframe>
 </div>
+</div>
+<!-- Script para botón de MAPA -->
 <script>
-     const btnMap = document.getElementById('btn_map');
-    const modalMap = document.querySelector('.modal_map');
-    const closeMap = document.getElementById('close_map');
+  const btnMap = document.getElementById('btn_map');
+  const modalMap = document.querySelector('.modal_map');
+  const closeMap = document.getElementById('close_map');
 
-    btnMap.addEventListener('click', () => {
-        modalMap.style.display = 'flex';
-    });
+  btnMap.addEventListener('click', () => {
+      modalMap.style.display = 'flex';
+  });
 
-    closeMap.addEventListener('click', () => {
-        modalMap.style.display = 'none';
-    });
+  closeMap.addEventListener('click', () => {
+      modalMap.style.display = 'none';
+  });
+</script>
+
+<!-- Script para botón de TAYLOR -->
+<script>
+  const btnTaylor = document.getElementById('btn_taylor');
+  const modalTaylor = document.querySelector('.modal_taylor_quiz_container');
+  const closeTaylor = document.getElementById('close_taylor');
+
+  btnTaylor.addEventListener('click', () => {
+      modalTaylor.style.display = 'flex';
+  });
+
+  closeTaylor.addEventListener('click', () => {
+      modalTaylor.style.display = 'none';
+  });
 </script>
 <script>
     const btnGame = document.getElementById('btn_game');
