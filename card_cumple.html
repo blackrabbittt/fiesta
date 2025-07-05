@@ -145,6 +145,12 @@ iframe.taylor_game {
     max-height: 600px;
     height: 100%;
 }
+
+.timer_cumple {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 @media screen and (max-width:1000px) {
     .card__invitation {
         height: auto;
@@ -207,6 +213,12 @@ h2 {
                     <button id="btn_map">Ver ubicación</button>
                     <button id="btn_game">Jugar mientras espera la comida</button>
                     <button id="btn_taylor">Reto de Taylor</button>
+                </div>
+                <div class="timer_cumple">
+                  <div id="countdown" style="width: 100%; background: rgb(188 233 243); border-radius: 12px; padding: 16px; margin: 0 !important; font-family: 'Montserrat', sans-serif; color: black !important; font-size: 14px !important;
+">
+  ⏳ Cargando cuenta regresiva...
+</div>
                 </div>
             </div>
             <div class="img_card"></div>
@@ -555,5 +567,32 @@ window.onload = function() {
 
   poof();
 };</script>
-  
+ <script>
+  const countdownElement = document.getElementById("countdown");
+  const targetDate = new Date("July 5, 2025 15:00:00").getTime();
+
+  const countdownInterval = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      countdownElement.innerHTML = `
+        <a href="https://drive.google.com/drive/folders/1rZtl_gsupHQ3whC3mVOJySeZP1nhwKp2?usp=sharing" 
+           style="display: inline-block; padding: 12px 24px; background-color: #ff4081; color: white; text-decoration: none; border-radius: 8px; font-size: 18px;" target="_blank">
+          🎁 Ver Sorpresa
+        </a>`;
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.innerHTML = `⏳ Faltan <strong>${days}</strong> días, <strong>${hours}</strong> horas, <strong>${minutes}</strong> min y <strong>${seconds}</strong> seg 🎂`;
+  }, 1000);
+</script>
+
+
 
