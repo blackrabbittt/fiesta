@@ -1,598 +1,374 @@
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Cumpleaños</title>
+
 <style>
-    *{
-        font-family: montserrat;
-        padding: 0;
-        margin: 0;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-    }
-    .container__birdday{
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, rgb(204 165 220 / 87%) 0%, rgb(204 165 220 / 90%) 100%), url(./img/globos-colores-volando-antonio.gif);
-        background-size: cover;
-    }
-    .content__invitation{
-        max-width: 1366px;
-        width: 100%;
-        height: 100%;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .card__invitation{
-        max-width: 800px;
-        width: 100%;
-        height: 400px;
-        margin: 0 auto;
-        background: url(./img/fondo_cinamoll.gif);
-        background-size: cover;
-        background-position: top center;
-        overflow: hidden;
-        border-radius: 12px;
-        display: flex;
-        flex-direction: row;
-    }
-    .text_card{
-        width: 50%;
-        height: 100%;
-        background: white;
-    }
-    .img_card {
-        width: 50%;
-        height: 100%;
-        background: url(./img/fondo_cinamoll.gif);
-        background-size: cover;
-        background-position: top center;
-    }
-    button {
-        padding: 10px;
-        font-weight: bold;
-        background: #bce9f3;
-        border-style: none;
-        border-radius: 8px;
-        cursor: pointer;
-    }
-    button:hover{
-        background: #cca5dc;
-    }
-    .text_card {
-        width: 50%;
-        height: 100%;
-        background: white;
-        display: flex;
-        flex-direction: column;
-        padding: 16px;
-        justify-content: space-evenly;
-    }
-    h1 {
-        font-size: 36px;
-        color: #cca5dc;
-    }
-    h2 {
-        color: grey;
-        font-size: 20px;
-    }
-    iframe {
-        max-width: 800px;
-        width: 100%;
-        height: 80px;
-        margin: 0 auto;
-        padding: 16px 0;
-        border-radius: 12px !important;
-        overflow: hidden;
-    }
-    .modal_map {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: white;
+  overflow: hidden;
 }
 
-.modal_map iframe {
-    width: 90%;
-    height: 70%;
-    border-radius: 12px;
-    border: none;
+/* CONTENEDOR */
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 }
-
-/* Botón para cerrar */
-.modal_map::after {
-    content: '';
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-.prueba{
-    height: 600px;
-}
-.modal_game iframe {
-    border-radius: 12px;
-    border: none;
-}
-.botones_card{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-.modal_taylor_quiz_container {
-    display: none;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
-}
-iframe.taylor_game {
-    max-height: 600px;
-    height: 100%;
-}
-
-.timer_cumple {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-@media screen and (max-width:1000px) {
-    .card__invitation {
-        height: auto;
-    flex-direction: column-reverse;
-}
-
-.text_card {
+.cover img {
+    max-width: 500px;
     width: 100%;
-    flex-direction: row;
-    align-items: center;
-    padding: 0;
+}
+/* PÁGINAS */
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: 0.6s;
 }
 
-.img_card {
-    width: 100%;
-    min-height: 350px;
-}
-.txt_info {
-    width: 50%;
-    padding: 16px;
+.page.active {
+  display: flex;
+  animation: fadeIn 0.6s;
 }
 
-.botones_card {
-    width: 50%;
-    padding: 16px;
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95);}
+  to { opacity: 1; transform: scale(1);}
 }
 
-h2 {
-    font-size: 12px;
-}
-}
-@media screen and (max-width:480px) {
-    .img_card {
-        height: 350px;
-    }
-    .text_card {
-    flex-direction: column;
+/* PORTADA */
+.cover {
+  background: linear-gradient(135deg, #ff0080, #7928ca);
 }
 
-.txt_info {
-    width: 90%;
+.cover h1 {
+  font-size: 28px;
 }
 
-.botones_card {
-    width: 90%;
+.cover button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  background: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 20px;
 }
+
+/* INFO */
+.info {
+    background: linear-gradient(#b5b5b500, #491e00), url(./img/michi_background.gif);
+    background-position: center top;
 }
+
+.info h2 {
+  font-size: 2rem;
+}
+
+/* PAGINAS MUSICA */
+.music-page {
+  background: #000;
+}
+
+.cd {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  animation: spin 6s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+.cover iframe {
+    margin-left: auto;
+}
+iframe {
+  border-radius: 12px;
+}
+
+/* BOTONES */
+.nav {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+button.nav-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 </style>
-<div class="container__birdday">
-    <section class="content__invitation">
-        <div class="card__invitation">
-            <div class="text_card">
-                <div class="txt_info">
-                    <h3>ESTÁS INVITAD@ A LA</h3>
-                    <h2>CELEBRACIÓN DE CUMPLEAÑOS</h2>
-                    <h1>DE CAROLINA ALONSO</h1>
-                    <p>5 DE JULIO DE 2025 A LAS 3:00 P.M.</p>
-                </div>
-                <div class="botones_card">
-                    <button id="btn_map">Ver ubicación</button>
-                    <button id="btn_game">Jugar mientras espera la comida</button>
-                    <button id="btn_taylor">Reto de Taylor</button>
-                </div>
-                <div class="timer_cumple">
-                  <div id="countdown" style="width: 100%; background: rgb(188 233 243); border-radius: 12px; padding: 16px; margin: 0 !important; font-family: 'Montserrat', sans-serif; color: black !important; font-size: 14px !important;
-">
-  ⏳ Cargando cuenta regresiva...
-</div>
-                </div>
-            </div>
-            <div class="img_card"></div>
-        </div>
-        <iframe style="border-radius:12px" 
-        src="https://open.spotify.com/embed/playlist/25MuSnt43eyq5aNp4gSeOf?utm_source=generator"
-         frameBorder="0" allowfullscreen="" 
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-        loading="lazy">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- PORTADA -->
+  <div class="page cover active">
+    <img src="./img/carito-eras-v3.png" alt="">
+    <h1>🎉
+ESTÁS INVITAD@ A LA
+CELEBRACIÓN DE CUMPLEAÑOS🎉</h1>
+    <p>DE CAROLINA ALONSO</p>
+    <button onclick="nextPage()">Entrar</button>
+    <iframe style="width:300px;height:80px" src="https://open.spotify.com/embed/track/4hqJ4bSlYJOXb6Z4SRmzxs?si=a8e20cb5cc9d48b7"  frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
+
+  <!-- INFO -->
+  <div class="page info">
+     <!-- <img src="./img/michi_card.png" alt=""> -->
+    <h2>📅 Información</h2>
+    <p><strong>Fecha:</strong> 04 Julio 2026</p>
+    <p><strong>Hora:</strong> 3:00 PM</p>
+    <p><strong>Lugar:</strong> Cra. 16 Bis #43 35, Bogotá - Calico Cat Cafe</p>
+  </div>
+<div id="confetti-container"></div>
+  <!-- 11 PAGINAS DE MUSICA -->
+<script>
+
+const tracks = [
+   {
+    img: "./img/fearless.png",
+    spotify: "https://open.spotify.com/embed/track/1qrpoAMXodY6895hGKoUpA?si=c52b763175fa43a5",
+    title: "Fearless"
+  },
+   {
+    img: "./img/speaknow.png",
+    spotify: "https://open.spotify.com/embed/track/30Y4CV7A6YqtQtTTo7Ue4j?si=1339697419a848a0",
+    title: "Speak Now"
+  },
+  {
+    img: "./img/red.png",
+    spotify: "https://open.spotify.com/embed/track/4CkgMiMqZ5JzW9iYXSTMTL?si=ac18296cd36848a8",
+    title: "Red"
+  },
+  {
+    img: "./img/1996.png",
+    spotify: "https://open.spotify.com/embed/track/1OcSfkeCg9hRC2sFKB4IMJ?si=34806873c4ff4aa3",
+    title: "1996"
+  },
+   {
+    img: "./img/reputation.png",
+    spotify: "https://open.spotify.com/embed/track/07NxDD1iKCHbAldceD7QLP?si=c4c23070a1b0492a",
+    title: "Reputation"
+  },
+   {
+    img: "./img/lover.png",
+    spotify: "https://open.spotify.com/embed/track/1SymEzIT3H8UZfibCs3TYi?si=f4703913ccfd4a81",
+    title: "Lover"
+  },
+  {
+    img: "./img/folklore.png",
+    spotify: "https://open.spotify.com/embed/track/4R2kfaDFhslZEMJqAFNpdd?si=5e26ce9836d64dc9",
+    title: "Folklore"
+  },
+  {
+    img: "./img/evermore.png",
+    spotify: "https://open.spotify.com/embed/track/2gVhfX2Gy1T9kDuS9azrF7?si=d9e9fe8b69e745f9",
+    title: "Evermore"
+  },
+    {
+    img: "./img/midnight.png",
+    spotify: "https://open.spotify.com/embed/track/4D7BCuvgdJlYvlX5WlN54t?si=88d930a18b614bfb",
+    title: "Midnight"
+  },
+  {
+    img: "./img/TTPD.png",
+    spotify: "https://open.spotify.com/embed/track/2fPvQfGQEZOKtJ9qXeL4x8?si=579734f545914257",
+    title: "TTPD"
+  },
+  {
+    img: "./img/the-life-of-a-showgirl.png",
+    spotify: "https://open.spotify.com/embed/track/53iuhJlwXhSER5J2IYYv1W",
+    title: "The Life of a Showgirl"
+  }
+
+  
+ 
+];
+const containerV = document.querySelector(".container");
+
+tracks.forEach(track => {
+  const page = document.createElement("div");
+  page.classList.add("page", "music-page");
+
+  page.innerHTML = `
+    <div class="cd" style="background-image:url('${track.img}')"></div>
+
+    <iframe style="width:300px;height:80px"
+      src="${track.spotify}"
+      frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
-    <div class="modal_map"><button id="close_map" style="
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 20px;
-        background: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-    ">✖</button><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.670543742907!2d-74.06156542502094!3d4.652716195322105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a438c774555%3A0x8e2af1374e6410c1!2sDevachan%20Caf%C3%A9%20M%C3%A1gico!5e0!3m2!1ses!2sco!4v1750817216960!5m2!1ses!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
-    </section>
-    <div class="modal_game"></div>
-    <div class="modal_taylor_quiz_container">
-      <button id="close_taylor" style="
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        font-size: 20px;
-        background: transparent;
-        color: white;
-        border: none;
-        cursor: pointer;
-    ">✖</button>
-  <iframe class="taylor_game" 
-    allow="fullscreen; autoplay; allow-top-navigation-by-user-activation"
-    allowfullscreen
-    width="795" height="690"
-    frameborder="0"
-    src="https://www.educaplay.com/game/9063894-you_belong_with_me.html">
-  </iframe>
+    
+
+    <p>${track.title}</p>
+  `;
+
+  containerV.appendChild(page);
+});
+
+</script>
+
+  <!-- BOTONES -->
+  <div class="nav">
+    <button class="nav-btn" onclick="prevPage()">⬅</button>
+    <button class="nav-btn" onclick="nextPage()">➡</button>
+  </div>
+
 </div>
-</div>
-<!-- Script para botón de MAPA -->
+
 <script>
-  const btnMap = document.getElementById('btn_map');
-  const modalMap = document.querySelector('.modal_map');
-  const closeMap = document.getElementById('close_map');
 
-  btnMap.addEventListener('click', () => {
-      modalMap.style.display = 'flex';
-  });
+let current = 0;
+const pages = document.querySelectorAll(".page");
 
-  closeMap.addEventListener('click', () => {
-      modalMap.style.display = 'none';
-  });
-</script>
+function showPage(index){
+  pages.forEach(p => p.classList.remove("active"));
+  pages[index].classList.add("active");
+}
 
-<!-- Script para botón de TAYLOR -->
-<script>
-  const btnTaylor = document.getElementById('btn_taylor');
-  const modalTaylor = document.querySelector('.modal_taylor_quiz_container');
-  const closeTaylor = document.getElementById('close_taylor');
+function nextPage(){
+  if(current < pages.length -1){
+    current++;
+    showPage(current);
+  }
+}
 
-  btnTaylor.addEventListener('click', () => {
-      modalTaylor.style.display = 'flex';
-  });
+function prevPage(){
+  if(current > 0){
+    current--;
+    showPage(current);
+  }
+}
 
-  closeTaylor.addEventListener('click', () => {
-      modalTaylor.style.display = 'none';
-  });
+ 
 </script>
 <script>
-    const btnGame = document.getElementById('btn_game');
-    const modalGame = document.querySelector('.modal_game');
-
-    // Guardamos el contenido original del iframe para reinsertarlo luego
-    const iframeHTML = `<iframe class="prueba"
-        src="https://www.retrogames.cc/embed/21985-yoshi-usa.html" 
-        width="800" height="400" 
-        frameborder="0" 
-        allowfullscreen>
-      </iframe>`;
-
-    // Crear botón de cierre para el modal del juego
-    const closeGameBtn = document.createElement('button');
-    closeGameBtn.innerText = '✖';
-    Object.assign(closeGameBtn.style, {
-        position: 'absolute',
-        top: '20px',
-        right: '30px',
-        fontSize: '20px',
-        background: 'transparent',
-        color: 'white',
-        border: 'none',
-        cursor: 'pointer'
-    });
-
-    closeGameBtn.addEventListener('click', () => {
-        modalGame.style.display = 'none';
-        modalGame.querySelector('iframe')?.remove(); // elimina el iframe (detiene el sonido)
-    });
-
-    modalGame.style.display = 'none';
-    Object.assign(modalGame.style, {
-        position: 'fixed',
-        top: '0',
-        left: '0',
-        width: '100vw',
-        height: '100vh',
-        background: 'rgba(0, 0, 0, 0.6)',
-        zIndex: '999',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column'
-    });
-
-    modalGame.appendChild(closeGameBtn);
-
-    btnGame.addEventListener('click', () => {
-        modalGame.style.display = 'flex';
-        modalGame.insertAdjacentHTML('beforeend', iframeHTML); // vuelve a insertar el iframe limpio
-    });
-</script>
-<script>
-    setTimeout(() => {
-      const btn = document.querySelector('button.Button-sc-1dqy6lx-0.ldUYMW.encore-text-body-medium-bold.e-9570-overflow-wrap-anywhere');
-      if (btn) {
-        btn.click();
-        console.log("Botón clickeado automáticamente.");
-      } else {
-        console.warn("Botón no encontrado.");
-      }
-    }, 2000);
-  </script>
-  <script>'use strict';
-
-window.onload = function() {
-  // Globals
-  var random = Math.random
-    , cos = Math.cos
-    , sin = Math.sin
-    , PI = Math.PI
-    , PI2 = PI * 2
-    , timer = undefined
-    , frame = undefined
-    , confetti = [];
-
-  var particles = 10
-    , spread = 40
-    , sizeMin = 3
-    , sizeMax = 12 - sizeMin
-    , eccentricity = 10
-    , deviation = 100
-    , dxThetaMin = -.1
-    , dxThetaMax = -dxThetaMin - dxThetaMin
-    , dyMin = .13
-    , dyMax = .18
-    , dThetaMin = .4
-    , dThetaMax = .7 - dThetaMin;
-
-  var colorThemes = [
-    function() {
-      return color(200 * random()|0, 200 * random()|0, 200 * random()|0);
-    }, function() {
-      var black = 200 * random()|0; return color(200, black, black);
-    }, function() {
-      var black = 200 * random()|0; return color(black, 200, black);
-    }, function() {
-      var black = 200 * random()|0; return color(black, black, 200);
-    }, function() {
-      return color(200, 100, 200 * random()|0);
-    }, function() {
-      return color(200 * random()|0, 200, 200);
-    }, function() {
-      var black = 256 * random()|0; return color(black, black, black);
-    }, function() {
-      return colorThemes[random() < .5 ? 1 : 2]();
-    }, function() {
-      return colorThemes[random() < .5 ? 3 : 5]();
-    }, function() {
-      return colorThemes[random() < .5 ? 2 : 4]();
-    }
+  
+  /* ── Confetti ── */
+  const container = document.getElementById('confetti-container');
+  const PI2 = Math.PI * 2;
+  const colorThemes = [
+    () => `rgb(${rnd(200)},${rnd(200)},${rnd(200)})`,
+    () => { const b = rnd(200); return `rgb(200,${b},${b})`; },
+    () => { const b = rnd(200); return `rgb(${b},200,${b})`; },
+    () => { const b = rnd(200); return `rgb(${b},${b},200)`; },
+    () => `rgb(200,100,${rnd(200)})`,
+    () => `rgb(${rnd(200)},200,200)`,
   ];
-  function color(r, g, b) {
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
-  }
+  function rnd(n) { return Math.random() * n | 0; }
 
-  // Cosine interpolation
-  function interpolation(a, b, t) {
-    return (1-cos(PI*t))/2 * (b-a) + a;
-  }
+  function lerp(a, b, t) { return (1 - Math.cos(Math.PI * t)) / 2 * (b - a) + a; }
 
-  // Create a 1D Maximal Poisson Disc over [0, 1]
-  var radius = 1/eccentricity, radius2 = radius+radius;
-  function createPoisson() {
-    // domain is the set of points which are still available to pick from
-    // D = union{ [d_i, d_i+1] | i is even }
-    var domain = [radius, 1-radius], measure = 1-radius2, spline = [0, 1];
+  function poisson(ecc) {
+    const r = 1 / ecc, r2 = r * 2;
+    let domain = [r, 1 - r], measure = 1 - r2, spline = [0, 1];
     while (measure) {
-      var dart = measure * random(), i, l, interval, a, b, c, d;
-
-      // Find where dart lies
+      let dart = measure * Math.random(), i, l, a, b;
       for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
-        a = domain[i], b = domain[i+1], interval = b-a;
-        if (dart < measure+interval) {
-          spline.push(dart += a-measure);
-          break;
-        }
-        measure += interval;
+        a = domain[i]; b = domain[i + 1];
+        if (dart < measure + (b - a)) { spline.push(dart += a - measure); break; }
+        measure += b - a;
       }
-      c = dart-radius, d = dart+radius;
-
-      // Update the domain
-      for (i = domain.length-1; i > 0; i -= 2) {
-        l = i-1, a = domain[l], b = domain[i];
-        // c---d          c---d  Do nothing
-        //   c-----d  c-----d    Move interior
-        //   c--------------d    Delete interval
-        //         c--d          Split interval
-        //       a------b
-        if (a >= c && a < d)
-          if (b > d) domain[l] = d; // Move interior (Left case)
-          else domain.splice(l, 2); // Delete interval
-        else if (a < c && b > c)
-          if (b <= d) domain[i] = c; // Move interior (Right case)
-          else domain.splice(i, 0, c, d); // Split interval
+      const c = dart - r, d = dart + r;
+      for (i = domain.length - 1; i > 0; i -= 2) {
+        l = i - 1; a = domain[l]; b = domain[i];
+        if (a >= c && a < d) b > d ? domain[l] = d : domain.splice(l, 2);
+        else if (a < c && b > c) b <= d ? domain[i] = c : domain.splice(i, 0, c, d);
       }
-
-      // Re-measure the domain
-      for (i = 0, l = domain.length, measure = 0; i < l; i += 2)
-        measure += domain[i+1]-domain[i];
+      for (i = 0, l = domain.length, measure = 0; i < l; i += 2) measure += domain[i + 1] - domain[i];
     }
-
-    return spline.sort();
+    return spline.sort((a, b) => a - b);
   }
 
-  // Create the overarching container
-  var container = document.createElement('div');
-  container.style.position = 'fixed';
-  container.style.top      = '0';
-  container.style.left     = '0';
-  container.style.width    = '100%';
-  container.style.height   = '0';
-  container.style.overflow = 'visible';
-  container.style.zIndex   = '9999';
+  const confetti = [];
+  const theme = colorThemes[0];
 
-  // Confetto constructor
-  function Confetto(theme) {
-    this.frame = 0;
-    this.outer = document.createElement('div');
-    this.inner = document.createElement('div');
-    this.outer.appendChild(this.inner);
-
-    var outerStyle = this.outer.style, innerStyle = this.inner.style;
-    outerStyle.position = 'absolute';
-    outerStyle.width  = (sizeMin + sizeMax * random()) + 'px';
-    outerStyle.height = (sizeMin + sizeMax * random()) + 'px';
-    innerStyle.width  = '100%';
-    innerStyle.height = '100%';
-    innerStyle.backgroundColor = theme();
-
-    outerStyle.perspective = '50px';
-    outerStyle.transform = 'rotate(' + (360 * random()) + 'deg)';
-    this.axis = 'rotate3D(' +
-      cos(360 * random()) + ',' +
-      cos(360 * random()) + ',0,';
-    this.theta = 360 * random();
-    this.dTheta = dThetaMin + dThetaMax * random();
-    innerStyle.transform = this.axis + this.theta + 'deg)';
-
-    this.x = window.innerWidth * random();
-    this.y = -deviation;
-    this.dx = sin(dxThetaMin + dxThetaMax * random());
-    this.dy = dyMin + dyMax * random();
-    outerStyle.left = this.x + 'px';
-    outerStyle.top  = this.y + 'px';
-
-    // Create the periodic spline
-    this.splineX = createPoisson();
-    this.splineY = [];
-    for (var i = 1, l = this.splineX.length-1; i < l; ++i)
-      this.splineY[i] = deviation * random();
-    this.splineY[0] = this.splineY[l] = deviation * random();
-
-    this.update = function(height, delta) {
+  class Confetto {
+    constructor() {
+      this.frame = 0;
+      this.outer = document.createElement('div');
+      this.inner = document.createElement('div');
+      this.outer.appendChild(this.inner);
+      const W = 3 + 9 * Math.random(), H = 3 + 9 * Math.random();
+      Object.assign(this.outer.style, { position: 'absolute', width: W + 'px', height: H + 'px', perspective: '50px', transform: `rotate(${360 * Math.random()}deg)` });
+      Object.assign(this.inner.style, { width: '100%', height: '100%', backgroundColor: theme() });
+      this.axis = `rotate3D(${Math.cos(360 * Math.random())},${Math.cos(360 * Math.random())},0,`;
+      this.theta = 360 * Math.random();
+      this.dTheta = 0.4 + 0.3 * Math.random();
+      this.inner.style.transform = this.axis + this.theta + 'deg)';
+      this.x = window.innerWidth * Math.random();
+      this.y = -100;
+      this.dx = Math.sin(-0.1 + 0.2 * Math.random());
+      this.dy = 0.13 + 0.05 * Math.random();
+      this.outer.style.left = this.x + 'px';
+      this.outer.style.top = this.y + 'px';
+      this.splineX = poisson(10);
+      this.splineY = this.splineX.map((_, i) => i === 0 || i === this.splineX.length - 1 ? 100 * Math.random() : 100 * Math.random());
+    }
+    update(height, delta) {
       this.frame += delta;
       this.x += this.dx * delta;
       this.y += this.dy * delta;
       this.theta += this.dTheta * delta;
-
-      // Compute spline and convert to polar
-      var phi = this.frame % 7777 / 7777, i = 0, j = 1;
+      const phi = (this.frame % 7777) / 7777;
+      let i = 0, j = 1;
       while (phi >= this.splineX[j]) i = j++;
-      var rho = interpolation(
-        this.splineY[i],
-        this.splineY[j],
-        (phi-this.splineX[i]) / (this.splineX[j]-this.splineX[i])
-      );
-      phi *= PI2;
-
-      outerStyle.left = this.x + rho * cos(phi) + 'px';
-      outerStyle.top  = this.y + rho * sin(phi) + 'px';
-      innerStyle.transform = this.axis + this.theta + 'deg)';
-      return this.y > height+deviation;
-    };
-  }
-
-  function poof() {
-    if (!frame) {
-      // Append the container
-      document.body.appendChild(container);
-
-      // Add confetti
-      var theme = colorThemes[0]
-        , count = 0;
-      (function addConfetto() {
-        var confetto = new Confetto(theme);
-        confetti.push(confetto);
-        container.appendChild(confetto.outer);
-        timer = setTimeout(addConfetto, spread * random());
-      })(0);
-
-      // Start the loop
-      var prev = undefined;
-      requestAnimationFrame(function loop(timestamp) {
-        var delta = prev ? timestamp - prev : 0;
-        prev = timestamp;
-        var height = window.innerHeight;
-
-        for (var i = confetti.length-1; i >= 0; --i) {
-          if (confetti[i].update(height, delta)) {
-            container.removeChild(confetti[i].outer);
-            confetti.splice(i, 1);
-          }
-        }
-
-        if (timer || confetti.length)
-          return frame = requestAnimationFrame(loop);
-
-        // Cleanup
-        document.body.removeChild(container);
-        frame = undefined;
-      });
+      const rho = lerp(this.splineY[i], this.splineY[j], (phi - this.splineX[i]) / (this.splineX[j] - this.splineX[i]));
+      const a = phi * PI2;
+      this.outer.style.left = (this.x + rho * Math.cos(a)) + 'px';
+      this.outer.style.top = (this.y + rho * Math.sin(a)) + 'px';
+      this.inner.style.transform = this.axis + this.theta + 'deg)';
+      return this.y > height + 100;
     }
   }
 
-  poof();
-};</script>
- <script>
-  const countdownElement = document.getElementById("countdown");
-  const targetDate = new Date("July 5, 2025 15:00:00").getTime();
+  let animFrame;
+  let addTimer = setTimeout(function add() {
+    const c = new Confetto();
+    confetti.push(c);
+    container.appendChild(c.outer);
+    addTimer = setTimeout(add, 40 * Math.random());
+  });
 
-  const countdownInterval = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-      clearInterval(countdownInterval);
-      countdownElement.innerHTML = `
-        <a href="https://drive.google.com/drive/folders/1rZtl_gsupHQ3whC3mVOJySeZP1nhwKp2?usp=sharing" 
-           style="display: inline-block; padding: 12px 24px; background-color: #ff4081; color: white; text-decoration: none; border-radius: 8px; font-size: 18px;" target="_blank">
-          🎁 Ver Sorpresa
-        </a>`;
-      return;
+  let prev;
+  (function loop(ts) {
+    const delta = prev ? ts - prev : 0;
+    prev = ts;
+    const h = window.innerHeight;
+    for (let i = confetti.length - 1; i >= 0; i--) {
+      if (confetti[i].update(h, delta)) {
+        container.removeChild(confetti[i].outer);
+        confetti.splice(i, 1);
+      }
     }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    countdownElement.innerHTML = `⏳ Faltan <strong>${days}</strong> días, <strong>${hours}</strong> horas, <strong>${minutes}</strong> min y <strong>${seconds}</strong> seg 🎂`;
-  }, 1000);
+    animFrame = requestAnimationFrame(loop);
+  })();
 </script>
-
-
-
+</body>
+</html>
